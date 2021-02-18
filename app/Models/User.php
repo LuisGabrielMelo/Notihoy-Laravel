@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPassword;
+use App\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
-use Laratrust\Traits\LaratrustUserTrait;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
-    use LaratrustUserTrait;
-    use HasFactory, Notifiable;
+    use Notifiable,
+        HasFactory;
 
     /**
-     * Atributos asignados en masa.
+     * The attributes that are mass assignable.
      *
      * @var array
      */
@@ -25,7 +27,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Atributos que se ocultarán en el response.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -35,7 +37,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Atributos que se van a castear a tipo de dato nativo.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
@@ -44,22 +46,71 @@ class User extends Authenticatable
     ];
 
     /**
-     * Los Post que pertenecen a este User.
+     * The accessors to append to the model's array form.
      *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     * @var array
      */
-    public function posts()
+    protected $appends = [
+        'photo_url',
+    ];
+
+    /**
+     * Get the profile photo URL attribute.
+     *
+     * @return string
+     */
+    public function getPhotoUrlAttribute()
     {
-        return $this->hasMany(Post::class);
+        return vsprintf('https://www.gravatar.com/avatar/%s.jpg?s=200&d=%s', [
+            md5(strtolower($this->email)),
+            $this->name ? urlencode("https://ui-avatars.com/api/$this->name") : 'mp',
+        ]);
     }
 
     /**
-     * Las Image subidas por este User.
+     * Get the oauth providers.
      *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images()
+    public function oauthProviders()
     {
-        return $this->hasMany(Image::class, 'uploader_id');
+        return $this->hasMany(OAuthProvider::class);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * @return int
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
