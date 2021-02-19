@@ -44,7 +44,7 @@ class PostService
         if ($validator->fails()) {
             throw new InvalidArgumentException($validator->errors()->first());
         }
-        dd(Image::make($data['cover'])->resize(300, 200)->save('foo.jpg'));
+
         if ($data['cover']) {
             Image::make($data['cover'])->resize(300, 200)->save('foo.jpg');
         }
