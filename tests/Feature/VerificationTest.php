@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Notifications\VerifyEmail;
 use Illuminate\Auth\Events\Verified;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\URL;
@@ -12,6 +14,8 @@ use Tests\TestCase;
 
 class VerificationTest extends TestCase
 {
+    use RefreshDatabase, WithFaker;
+
     /** @test */
     public function can_verify_email()
     {

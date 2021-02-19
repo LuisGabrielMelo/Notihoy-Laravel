@@ -9,9 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
+    use LaratrustUserTrait;
     use Notifiable,
         HasFactory;
 
