@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('posts', PostController::class)->only([
+    'show'
+]);
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', [LoginController::class, 'logout']);
 
@@ -31,7 +35,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::patch('settings/profile', [ProfileController::class, 'update']);
     Route::patch('settings/password', [PasswordController::class, 'update']);
 
-    Route::resource('post', PostController::class);
+    Route::resource('posts', PostController::class)->except([
+        'index', 'show'
+    ]);
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
@@ -47,3 +53,8 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', [OAuthController::class, 'redirect']);
     Route::get('oauth/{driver}/callback', [OAuthController::class, 'handleCallback'])->name('oauth.callback');
 });
+
+Route::any('/{any}', function ()
+{
+    return response()->json([], 404);
+})->where('any', '.*');

@@ -24,28 +24,9 @@ class PostController extends Controller
     {
         $this->postService = $postService;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Crea un nuevo post.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,7 +42,6 @@ class PostController extends Controller
 
         try {
             $result = $this->postService->savePostData($data);
-            return response()->json(['data' => $result], 201);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -70,29 +50,22 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra el post buscandolo por slug.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = $this->postService->getPostBySlug($slug);
+        if ($post) {
+            return response()->json($post);
+        }
+        return response()->json($post, 404);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Actualiza el post con nuevos datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -100,7 +73,20 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only(
+            'title',
+            'subtitle',
+            'content',
+            'cover',
+        );
+
+        try {
+            $result = $this->postService->updatePost($data, $id);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        return response()->json($result, 200);
     }
 
     /**
@@ -111,6 +97,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $result = $this->postService->deletePostByID($id);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        return response()->json($result, 200);
     }
 }

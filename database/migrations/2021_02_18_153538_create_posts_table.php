@@ -33,6 +33,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->required();
             $table->string('subtitle');
+            $table->string('slug');
             $table->longtext('content')->required();
             $table->boolean('published')->default(false);
             $table->unsignedBigInteger('cover_id')->nullable();
