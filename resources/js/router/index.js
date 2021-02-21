@@ -7,6 +7,7 @@ import { sync } from 'vuex-router-sync'
 
 Vue.use(Meta)
 Vue.use(Router)
+Vue.component('Pagination', require('laravel-vue-pagination'))
 
 // The middleware for every page of the application.
 const globalMiddleware = ['locale', 'check-auth']

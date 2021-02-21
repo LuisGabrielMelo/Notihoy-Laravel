@@ -22,6 +22,16 @@ class PostRepository
     }
 
     /**
+     * Trae todos los posts.
+     *
+     * @return Post
+     */
+    public function getAllPost()
+    {
+        return $this->post->with('cover', 'categories')->orderBy('id', 'desc')->paginate(6);
+    }
+
+    /**
      * Guarda un nuevo Post en la DB.
      *
      * @param array $data
@@ -83,11 +93,11 @@ class PostRepository
     public function getPostBySlug(string $slug, $exclude_id=null)
     {
         if ($exclude_id) {
-            return $this->post->where([
+            return $this->post->with('cover', 'categories')->where([
                 ['slug', $slug],
                 ['id', '!=', $exclude_id]
             ])->first();
         }
-        return $this->post->where('slug', $slug)->first();
+        return $this->post->with('cover', 'categories')->where('slug', $slug)->first();
     }
 }

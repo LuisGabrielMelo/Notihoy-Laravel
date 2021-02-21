@@ -34,6 +34,16 @@ class PostService
         $this->postRepository = $postRepository;
     }
 
+     /**
+     * Trae todos los posts.
+     *
+     * @return Post
+     */
+    public function getAllPost()
+    {
+        return $this->postRepository->getAllPost();
+    }
+
     /**
      * Valida los datos del Post.
      * Si no hay error se envían los datos al repository

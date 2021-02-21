@@ -26,6 +26,22 @@ class PostController extends Controller
     }
 
     /**
+     * Retorna una lista paginada de posts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        try {
+            $result = $this->postService->getAllPost();
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        return response()->json($result, 201);
+    }
+
+    /**
      * Crea un nuevo post.
      *
      * @param  \Illuminate\Http\Request  $request
