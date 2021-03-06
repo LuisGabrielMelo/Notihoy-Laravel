@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Noti Hoy</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body class="bg-gray-300"> <!--AÑADIDO DE COLOR gris al fondo-->
     <nav class="bg-indigo-900">
