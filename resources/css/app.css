@@ -1,0 +1,49 @@
+.fondoMenu {
+    background-color: #1C1C1C;
+    overflow: hidden;
+}
+.menu-alineado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.todo {
+    flex: 1;
+}
+
+/* buscador */
+
+.buscador {
+    overflow: hidden;
+}
+.buscador input, .buscador button {
+    background-color: rgba(255,255,255, .1);
+}
+
+/* animaciones css */
+.fadeIn {
+    animation: crecerFadeIn 500ms ease forwards;
+}
+.fadeOut {
+    animation: crecerFadeOut 500ms ease forwards;
+}
+@keyframes crecerFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0,0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+}
+@keyframes crecerFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1,1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0,0);
+    }
+}
