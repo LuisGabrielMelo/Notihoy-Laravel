@@ -74,7 +74,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 col-span-1 sm:col-span-4 lg:col-span-3 gap-3">
 
-                <h1 class="p-2 lg:p-4 font-medium text-current text-base w-full lg:col-span-3"><i
+                <h1 class="p-2 lg:p-4 font-medium text-current text-base w-full sm:col-span-3 lg:col-span-3"><i
                         class="fas fa-fire"></i>
                     Noticias mas vistas</h1>
                 <!--- Diseño de la tarjeta -->
