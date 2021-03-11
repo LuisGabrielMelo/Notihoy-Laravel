@@ -1,355 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1c1c1c">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Noti Hoy</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="../css/app.css">
 </head>
-<body class="bg-gray-300"> <!--AÑADIDO DE COLOR gris al fondo-->
-    <nav class="bg-indigo-900">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div class="relative flex items-center justify-between h-16">
-            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <!-- Mobile menu button-->
-              <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <!-- Icon when menu is closed. -->
-                <!--
-                  Heroicon name: menu
-      
-                  Menu open: "hidden", Menu closed: "block"
-                -->
-                <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <!-- Icon when menu is open. -->
-                <!--
-                  Heroicon name: x
-      
-                  Menu open: "block", Menu closed: "hidden"
-                -->
-                <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+
+<body>
+    <div class="container mx-auto">
+        <header class="sticky top-0 sm:static fondoMenu menu-alineado  px-4">
+            <div class="py-6 text-white">NOTYHOY</div>
+            <div class="buscador menu-alineado">
+                <input type="text" class="w-48 sm:w-96 text-sm focus:outline-none p-1 text-white"
+                    placeholder="Buscar noticias...">
+                <button type="submit" class="focus:outline-none p-1 text-white text-sm"><i
+                        class="fas fa-search"></i></button>
             </div>
-            <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-              <div class="flex-shrink-0 flex items-center">
-             <!-- Icon when menu is open.
-                <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Noti Hoy">
-                <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Noti Hoy"> -->
-              </div>
-              <div class="hidden sm:block sm:ml-6">
-                <div class="flex space-x-4">
-                  
+        </header>
+        <div class="px-4 bg-gray-100">
+
+            <!-- Grilla para acomodar todos los elementos de este contenedor-->
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                <!-- aside de categorias -->
+                <aside
+                    class="mt-4 col-span-1 sm:col-span-4 lg:col-span-1 w-full static lg:sticky top-0 h-auto lg:h-screen bg-gray-100 lg:bg-gray-200 lg:shadow"">
+                    <div class=" menu-alineado">
+                    <h2 class="text-base text-current font-medium p-2 lg:p-4 lg:col-span-3"><i
+                            class="far fa-circle"></i> Categorias</h2>
+                    <button
+                        class="border border-gray-400 border-solid rounded text-sm sm:text-base font-light bg-gray-100 text-center py-2 px-6 transition duration-1000 ease hover:bg-gray-400 outline-none focus:outline-none lg:hidden"
+                        id="btnCategorias">Ver mas</button>
+            </div>
+            <nav class="lg:block hidden" id="categorias">
+                <ul class="divide-y divide-gray-300">
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-funnel-dollar"></i> Economia</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-graduation-cap"></i> Educacion</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-flask"></i> Ciencia</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-laptop-code"></i> Programacion</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-landmark"></i> Politica</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                    <li><a href="#"
+                            class="menu-alineado text-base text-gray-700 p-4 transition duration-1000 ease hover:bg-gray-300 block"><span><i
+                                    class="fas fa-music"></i> Musica</span> <span
+                                class="rounded-full w-5 h-5 text-sm bg-gray-300 text-current text-center">3</span></a>
+                    </li>
+                </ul>
+            </nav>
+            </aside>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 col-span-1 sm:col-span-4 lg:col-span-3 gap-3">
+
+                <h1 class="p-2 lg:p-4 font-medium text-current text-base w-full lg:col-span-3"><i
+                        class="fas fa-fire"></i>
+                    Noticias mas vistas</h1>
+                <!--- Diseño de la tarjeta -->
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <span class="sr-only">View notifications</span>
-                <!-- Heroicon name: bell -->
-                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </button>
-      
-              <!-- Profile dropdown -->
-              <div class="ml-3 relative">
-                <div>
-                  <button class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                  </button>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--
-                  Profile dropdown panel, show/hide based on dropdown state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
-                <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Tu perfil</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Configuraciones</a>
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Iniciar Sesión</a>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 border border-solid border-gray-300 w-full">
+                    <img src="https://source.unsplash.com/collection/190727/300x150" alt="titulo-de-la-noticia"
+                        class="w-full">
+                    <div class="px-4 py-2">
+                        <h2 class="font-medium text-base text-gray-700 sm:font-medium sm:text-base">Lorem, ipsum dolor
+                            sit amet consectetur.</h2>
+                        <div class="grid grid-cols-3 sm:grid-cols-1">
+                            <div class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block"><span
+                                    class="font-bold text-red-400"><i class="far fa-user"></i></span> Gerson Borja</div>
+                            <div
+                                class="text-xs text-gray-400 font-light my-4 sm:my-1 inline-block sm:block col-span-2 sm:col-span-1 text-right sm:text-left">
+                                <span class="font-bold text-gray-600"><i class="far fa-calendar"></i> Publicada:</span>
+                                5 de marzo 2021
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-        </div>
-      
-        <!--
-          Mobile menu, toggle classes based on menu state.
-      
-          Menu open: "block", Menu closed: "hidden"
-        -->
-        <div class="hidden sm:hidden">
-          <div class="px-2 pt-2 pb-3 space-y-1">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-          </div>
-        </div>
-      </nav>
-       <!-- Card-->
-       <div class="container my-12 mx-auto px-4 md:px-12"></div>
-        <div class="flex flex-wrap -mx-1 lg:-mx-4">
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg">
-    
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="/img/eco.jpg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Economia
-                            </a>
-                        </h1>
-                        
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg   
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="/img/edu.jpg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Educación
-                            </a>
-                        </h1>
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg ">
-    
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="/img/ciencia.jpg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Ciencia
-                            </a>
-                        </h1>
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg ">
-    
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="/img/program.jpg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Programacion
-                            </a>
-                        </h1>
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg ">
-    
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="/img/politica.jpg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Política
-                            </a>
-                        </h1>
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
-            <!-- Column -->
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    
-                <!-- Article -->
-                <article class="overflow-hidden rounded-lg shadow-lg ">
-    
-                    <a href="#">
-                        <img alt="Placeholder" class="block h-auto w-full" src="img/música.jpeg">
-                    </a>
-    
-                    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-                        <h1 class="text-lg">
-                            <a class="no-underline hover:underline text-black" href="#">
-                                Música
-                            </a>
-                        </h1>
-                        <p class="text-grey-darker text-sm">
-                            11/1/19
-                        </p>
-                    </header>
-    
-                    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                        <a class="flex items-center no-underline hover:underline text-black" href="#">
-                            <img alt="Placeholder" class="block rounded-full" src="https://picsum.photos/32/32/?random">
-                            <p class="ml-2 text-sm">
-                                Author Name
-                            </p>
-                        </a>
-                        <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                            <span class="hidden">Like</span>
-                            <i class="fa fa-heart"></i>
-                        </a>
-                    </footer>
-    
-                </article>
-                <!-- END Article -->
-    
-            </div>
-            <!-- END Column -->
-    
         </div>
     </div>
-    
-    <footer class="py-10 bg-indigo-900 text-center text-white">
+
+    <footer class="fondoMenu text-white py-6 px-4 text-xs sm:text-base mt-4">
         Noti Hoy All rights reserved (Todos los derechos reservados) 2020
-  </footer>
-    <script src="responsi.js"></script>
+    </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
+
 </html>
